@@ -16,10 +16,12 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class Config {
+
     private String adbCommand;
     private long screenshotDelay;
     private int screenWidth;
     private int screenHeight;
+    private int scale;
 
     public void load(InputStream in) throws IOException {
         Properties properties = new Properties();
@@ -29,6 +31,7 @@ public class Config {
         screenshotDelay = Long.parseLong(properties.getProperty("screenshotDelay"));
         screenWidth = Integer.valueOf(properties.getProperty("screenWidth"));
         screenHeight = Integer.valueOf(properties.getProperty("screenHeight"));
+        scale = Integer.valueOf(properties.getProperty("scale"));
     }
 
     public String getAdbCommand() {
@@ -61,6 +64,14 @@ public class Config {
 
     public void setScreenHeight(int screenHeight) {
         this.screenHeight = screenHeight;
+    }
+
+    public int getScale() {
+        return scale;
+    }
+
+    public void setScale(int scale) {
+        this.scale = scale;
     }
 
 }

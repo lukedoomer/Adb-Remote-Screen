@@ -26,16 +26,17 @@ public class ScreenPanel extends JPanel implements MouseListener, KeyListener {
     private int mScreenWidth = 0, mScreenHeight = 0;
     private double mRatio;
     private boolean mFirstDraw = true, mUpdateFrame = false;
-    private double mScale = 1;
+    private double mScale;
     private int mDownX, mDownY;
     private long mSwipeStartTime;
     private boolean mLandscape = false;
     private boolean mPaused;
     protected Thread mUpdateThread;
 
-    public ScreenPanel(AdbHelper helper, long updateDelay) {
+    public ScreenPanel(AdbHelper helper, long updateDelay, int initialScale) {
         mAdbHelper = helper;
         this.updateDelay = updateDelay;
+        mScale = initialScale / 100.0;
         addMouseListener(this);
         addKeyListener(this);
 
@@ -108,7 +109,7 @@ public class ScreenPanel extends JPanel implements MouseListener, KeyListener {
             mScreenHeight = mLandscape ? mImage.getWidth() : mImage.getHeight();
 
             if (mFirstDraw) {
-                setScale(0.5);
+                setScale(mScale);
                 mFirstDraw = false;
             }
 
