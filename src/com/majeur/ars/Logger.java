@@ -31,6 +31,7 @@ public class Logger {
     }
 
     private static void log(String tag, String msg) {
+        System.out.println(tag + ": " + msg);
         sStringBuilder.append(buildDate());
         sStringBuilder.append("\t");
         sStringBuilder.append(tag);

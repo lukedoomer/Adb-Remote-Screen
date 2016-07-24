@@ -41,12 +41,12 @@ public class AdbHelper {
     }
 
     public void performClick(double x, double y) {
-        Logger.i("Click at %.1fx%.1f", x, y);
+        Logger.i("Click at %.1f %.1f", x, y);
         executeDeviceShellCommand(String.format(Constants.Adb.CMD_TAP, x, y).replace(',', '.'));
     }
 
     public void performSwipe(double x1, double y1, double x2, double y2, long duration) {
-        Logger.i("Swipe from %.1fx%.1f to %.1fx%.1f during %d ms", x1, y1, x2, y2, duration);
+        Logger.i("Swipe from %.1f %.1f to %.1f %.1f during %d ms", x1, y1, x2, y2, duration);
         executeDeviceShellCommand("input swipe " + x1 + " " + y1 + " " + x2 + " " + y2 + " " + duration);
     }
 
