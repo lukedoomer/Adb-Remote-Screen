@@ -51,8 +51,8 @@ public class AdbHelper {
     }
 
     public void performSwipe(double x1, double y1, double x2, double y2, long duration) {
-        Logger.i("Swipe from %.1f %.1f to %.1f %.1f during %d ms", x1, y1, x2, y2, duration);
-        executeDeviceShellCommand("input swipe " + x1 + " " + y1 + " " + x2 + " " + y2 + " " + duration);
+        Logger.i("Swipe from %.0f %.0f to %.0f %.0f during %d ms", x1, y1, x2, y2, duration);
+        executeDeviceShellCommand(String.format(Constants.Adb.CMD_SWIPE, x1, y1, x2, y2, duration));
     }
 
     private String executeDeviceShellCommand(String command) {

@@ -29,7 +29,7 @@ public final class Constants {
 
         public static final String CMD_SCREENCAP = "%s -s %s shell screencap -p | perl -pe \'BEGIN { $/=\"\\cM\\cJ\"; $\\=\"\\cJ\"; } chomp;\'";
         public static final String CMD_TAP = "input tap %f %f";
-        public static final String CMD_SWIPE = "input swipe %f %f %f %f %d";
+        public static final String CMD_SWIPE = "input swipe %.0f %.0f %.0f %.0f %d";
         public static final String CMD_KEY = "input keyevent %d";
 
         public static final Object[][] INPUT_KEY_MAP = { { 0, "UNKNOWN" }, { 1, "MENU" }, { 2, "SOFT_RIGHT" },
