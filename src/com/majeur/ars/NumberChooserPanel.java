@@ -10,6 +10,8 @@ import javax.swing.JTextArea;
 
 public class NumberChooserPanel extends JPanel {
 
+    private static final long serialVersionUID = 1L;
+
     private JTextArea mTextArea;
     private JButton mMinusButton, mPlusButton;
     private int mValue;

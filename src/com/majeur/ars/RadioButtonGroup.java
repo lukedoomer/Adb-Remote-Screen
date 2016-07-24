@@ -12,6 +12,8 @@ import javax.swing.JRadioButton;
 
 public class RadioButtonGroup extends JPanel {
 
+    private static final long serialVersionUID = 1L;
+
     interface OnRadioSelectedListener {
         void onSelected(int index);
     }

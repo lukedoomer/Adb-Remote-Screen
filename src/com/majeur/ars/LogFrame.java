@@ -9,6 +9,8 @@ import javax.swing.JTextArea;
 
 public class LogFrame extends JFrame implements WindowListener {
 
+    private static final long serialVersionUID = 1L;
+
     private static final int WIDTH = 450, HEIGHT = 250;
 
     public LogFrame() {

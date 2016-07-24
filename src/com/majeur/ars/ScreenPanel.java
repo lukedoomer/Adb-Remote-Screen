@@ -18,6 +18,8 @@ import javax.swing.SwingUtilities;
 
 public class ScreenPanel extends JPanel implements MouseListener, KeyListener {
 
+    private static final long serialVersionUID = 1L;
+
     private static final long MIN_SCREEN_REFRESH_INTERVAL = 250;
     private AdbHelper mAdbHelper;
     private BufferedImage mImage;

@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 
 public class InputFrame extends JFrame implements ActionListener {
 
+    private static final long serialVersionUID = 1L;
+
     private AdbHelper mAdbHelper;
 
     public InputFrame(AdbHelper adbHelper) {

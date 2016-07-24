@@ -34,6 +34,8 @@ import com.majeur.ars.Constants.Strings;
 
 public class MainFrame extends JFrame implements OnDevicesChangedListener {
 
+    private static final long serialVersionUID = 1L;
+
     private AdbHelper mAdbHelper;
     private ScreenPanel mScreenPanel;
     private String[] mDevices;
@@ -94,13 +96,13 @@ public class MainFrame extends JFrame implements OnDevicesChangedListener {
 
             Logger.i("No device found");
 
-            mNoDeviceDialog.show();
+            mNoDeviceDialog.setVisible(true);
         } else {
             mScreenPanel.startUpdate();
             setTitle(String.format(Strings.WINDOW_TILE_DEVICE, device));
             mAdbHelper.setTargetDevice(device);
             mRadioButtonGroup.setSelectedRadio(Arrays.asList(mDevices).indexOf(device));
-            mNoDeviceDialog.hide();
+            mNoDeviceDialog.setVisible(false);
         }
     }
 

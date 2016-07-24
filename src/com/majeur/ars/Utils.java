@@ -10,8 +10,11 @@ import java.util.Scanner;
 public class Utils {
 
     static String streamToString(java.io.InputStream is) {
-        java.util.Scanner s = new Scanner(is).useDelimiter("\\A");
-        return s.hasNext() ? s.next() : "";
+        Scanner s = new Scanner(is);
+        s.useDelimiter("\\A");
+        String result = s.hasNext() ? s.next() : "";
+        s.close();
+        return result;
     }
 
     static String getRunningJarPath() {
@@ -72,7 +75,6 @@ public class Utils {
                 InputStreamReader isr = new InputStreamReader(mInputStream);
                 BufferedReader br = new BufferedReader(isr);
                 while (br.readLine() != null) {
-                    ;
                 }
             } catch (IOException ioe) {
                 ioe.printStackTrace();
