@@ -20,8 +20,8 @@ public class ScreenPanel extends JPanel implements MouseListener, KeyListener {
 
     private static final long serialVersionUID = 1L;
 
-    private static final long MIN_SCREEN_REFRESH_INTERVAL = 250;
     private AdbHelper mAdbHelper;
+    private final long updateDelay;
     private BufferedImage mImage;
     private int mScreenWidth = 0, mScreenHeight = 0;
     private double mRatio;
@@ -30,13 +30,12 @@ public class ScreenPanel extends JPanel implements MouseListener, KeyListener {
     private int mDownX, mDownY;
     private long mSwipeStartTime;
     private boolean mLandscape = false;
-
     private boolean mPaused;
-
     protected Thread mUpdateThread;
 
-    public ScreenPanel(AdbHelper helper) {
+    public ScreenPanel(AdbHelper helper, long updateDelay) {
         mAdbHelper = helper;
+        this.updateDelay = updateDelay;
         addMouseListener(this);
         addKeyListener(this);
 
@@ -64,7 +63,7 @@ public class ScreenPanel extends JPanel implements MouseListener, KeyListener {
             stopUpdate();
         }
 
-        mUpdateThread = new UpdateThread();
+        mUpdateThread = new UpdateThread(updateDelay);
         mUpdateThread.start();
     }
 
@@ -198,19 +197,19 @@ public class ScreenPanel extends JPanel implements MouseListener, KeyListener {
 
     private class UpdateThread extends Thread {
 
+        private final long updateDelay;
+
+        public UpdateThread(long updateDelay) {
+            this.updateDelay = updateDelay;
+        }
+
         @Override
         public void run() {
             super.run();
-            long previousFrameTime = System.currentTimeMillis();
 
             while (!Thread.interrupted()) {
-                long currentFrameTime = System.currentTimeMillis();
-                long dT = currentFrameTime - previousFrameTime;
-                previousFrameTime = currentFrameTime;
-
-                if (LocalProperties.limitFrameRate && dT < MIN_SCREEN_REFRESH_INTERVAL) {
-                    Utils.sleep(MIN_SCREEN_REFRESH_INTERVAL - dT);
-                }
+                // give the device some time for other stuff
+                Utils.sleep(updateDelay);
 
                 mImage = mAdbHelper.retrieveScreenShot();
 

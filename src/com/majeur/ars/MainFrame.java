@@ -10,6 +10,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -47,12 +48,20 @@ public class MainFrame extends JFrame implements OnDevicesChangedListener {
     private JFrame mInputKeysFrame;
     private JFrame mLogFrame;
 
-    public MainFrame(final AdbHelper adbHelper) {
+    public MainFrame(File configFile) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
                 | UnsupportedLookAndFeelException e) {
             e.printStackTrace();
+        }
+
+        Config config = new Config();
+        try {
+            config.load(new FileInputStream(configFile));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
         }
 
         setTitle(Strings.WINDOW_TILE_REGULAR);
@@ -67,8 +76,8 @@ public class MainFrame extends JFrame implements OnDevicesChangedListener {
         mNoDeviceDialog = optionPane.createDialog(this, Strings.TITLE_NO_DEVICE);
         mNoDeviceDialog.setModal(false);
 
-        mAdbHelper = adbHelper;
-        mScreenPanel = new ScreenPanel(adbHelper);
+        mAdbHelper = new AdbHelper(config.getAdbCommand());
+        mScreenPanel = new ScreenPanel(mAdbHelper, config.getScreenshotDelay());
 
         mAdbHelper.registerDevicesChangedListener(this);
 

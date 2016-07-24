@@ -41,4 +41,6 @@ I am new to Swing environement, do not hesitate to fork and pullrequest, even fo
 
 Copyright Majeur 2015-2016
 
+Special thanks to Marian Schedenig (http://marian.schedenig.name/2014/07/03/remote-control-your-android-phone-through-adb/)
+
 Licensed under Apache License 2.0
