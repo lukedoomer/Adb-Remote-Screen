@@ -154,8 +154,39 @@ public class ScreenPanel extends JPanel implements MouseListener, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        // TODO Auto-generated method stub
+        switch (e.getKeyCode()) {
+        case KeyEvent.VK_ENTER:
+            mAdbHelper.performInputKey(AndroidKey.ENTER);
+            return;
 
+        case KeyEvent.VK_ESCAPE:
+            mAdbHelper.performInputKey(AndroidKey.BACK);
+            return;
+
+        case KeyEvent.VK_HOME:
+            mAdbHelper.performInputKey(AndroidKey.HOME);
+            return;
+
+        case KeyEvent.VK_BACK_SPACE:
+            mAdbHelper.performInputKey(AndroidKey.DEL);
+            return;
+
+        case KeyEvent.VK_UP:
+            mAdbHelper.performInputKey(AndroidKey.DPAD_UP);
+            return;
+
+        case KeyEvent.VK_DOWN:
+            mAdbHelper.performInputKey(AndroidKey.DPAD_DOWN);
+            return;
+
+        case KeyEvent.VK_LEFT:
+            mAdbHelper.performInputKey(AndroidKey.DPAD_LEFT);
+            return;
+
+        case KeyEvent.VK_RIGHT:
+            mAdbHelper.performInputKey(AndroidKey.DPAD_RIGHT);
+            return;
+        }
     }
 
     @Override

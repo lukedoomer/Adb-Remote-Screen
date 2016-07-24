@@ -35,6 +35,11 @@ public class AdbHelper {
         mDevice = device;
     }
 
+    public void performInputKey(AndroidKey key) {
+        Logger.i("Key pressed '" + key.toString() + "' (code: %d)", key.getCode());
+        executeDeviceShellCommand(String.format(Constants.Adb.CMD_KEY, key.getCode()));
+    }
+
     public void performInputKey(int keyCode) {
         Logger.i("Key pressed (code: %d)", keyCode);
         executeDeviceShellCommand(String.format(Constants.Adb.CMD_KEY, keyCode));
