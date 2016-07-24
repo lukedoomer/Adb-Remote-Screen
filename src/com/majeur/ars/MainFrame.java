@@ -65,9 +65,9 @@ public class MainFrame extends JFrame implements OnDevicesChangedListener {
         }
 
         setTitle(Strings.WINDOW_TILE_REGULAR);
-        setSize(200, 500);
+        pack();
         setResizable(false);
-        setLocationRelativeTo(null);
+        setLocationByPlatform(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
 
