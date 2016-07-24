@@ -143,8 +143,13 @@ public class ScreenPanel extends JPanel implements MouseListener, KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        // TODO Auto-generated method stub
+        char c = e.getKeyChar();
 
+        if (c >= 'a' && c <= 'z') {
+            mAdbHelper.performInputKey(29 + c - 'a');
+        } else if (c >= 'A' && c <= 'Z') {
+            mAdbHelper.performInputKey(29 + c - 'A');
+        }
     }
 
     @Override
@@ -155,8 +160,6 @@ public class ScreenPanel extends JPanel implements MouseListener, KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
