@@ -85,10 +85,10 @@ public class MainFrame extends JFrame implements OnDevicesChangedListener {
 
         final int togglesWidth = 180;
         JPanel togglesPanel = new JPanel();
-        togglesPanel.setPreferredSize(new Dimension(togglesWidth, 400));
+        togglesPanel.setPreferredSize(new Dimension(togglesWidth, 600));
 
         togglesPanel.add(buildDevicesPanel(togglesWidth));
-        togglesPanel.add(buildRenderingOptionPanel(togglesWidth));
+        togglesPanel.add(buildRenderingOptionPanel(togglesWidth, config.getScale()));
         togglesPanel.add(buildInfoPanel(togglesWidth));
 
         getContentPane().add(togglesPanel, BorderLayout.WEST);
@@ -169,7 +169,7 @@ public class MainFrame extends JFrame implements OnDevicesChangedListener {
 
     private JPanel buildDevicesPanel(int width) {
         JPanel devicesPanel = new JPanel();
-        devicesPanel.setPreferredSize(new Dimension(width, 100));
+        devicesPanel.setPreferredSize(new Dimension(width, 300));
         devicesPanel.setBorder(BorderFactory.createTitledBorder("Devices"));
 
         mRadioButtonGroup = new RadioButtonGroup();
@@ -184,7 +184,7 @@ public class MainFrame extends JFrame implements OnDevicesChangedListener {
         return devicesPanel;
     }
 
-    private JPanel buildRenderingOptionPanel(int width) {
+    private JPanel buildRenderingOptionPanel(int width, int scale) {
         JPanel renderingPanel = new JPanel();
         renderingPanel.setPreferredSize(new Dimension(width, 165));
         renderingPanel.setBorder(BorderFactory.createTitledBorder("Rendering"));
@@ -220,7 +220,7 @@ public class MainFrame extends JFrame implements OnDevicesChangedListener {
         renderingPanel.add(landscapeCheckBox);
 
         NumberChooserPanel numberChooser = new NumberChooserPanel("Scale");
-        numberChooser.setValue(50);
+        numberChooser.setValue(scale);
         numberChooser.setOnValueChangedListener(new NumberChooserPanel.OnValueChangedListener() {
             @Override
             public void onValueChanged(int newValue) {
